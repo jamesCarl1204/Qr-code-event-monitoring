@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    box-sizing: border-box
+}
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    height:100vh;
+    
+}
+:root {
+
+    --primary-blue: #2563EB;
+    --primary-dark: #1D4ED8;
+
+    --navy: #0F172A;
+    --navy-light: #1E293B;
+
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #EFF6FF;
+    
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --text-white: #FFFFFF;
+
+    --border-color: #E2E8F0;
+
+    --success: #22C55E;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+}
+
+.login-desc {
+    background-color: var(--navy);
+    color: white;
+    padding: 50px;
+    font-size:3rem;
+}
+
+.login-form {
+    
+}
+
+#qr-logo{
+    display: flex;
+    align-items: center;
+    gap:10px;
+   
+}
+#qr-logo i {
+    font-size: 80px
+}
+#qr-logo span{
+    color: aqua
+}
+#qr-logo p { 
+    font-weight: 700
+}
