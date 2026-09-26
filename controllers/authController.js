@@ -3,9 +3,9 @@ const {body, validationResult} = require('express-validator')
 const {studentModel} = require('../models/studentModel')
 
 const registerValidation = [
-    body(studentId).isLength({min:8, max:8}).withMessage('id should be exactly 8'),
-    body(email).isEmail().withMessage('please enter a valid email'),
-    body(password).isLength({min:8}).withMessage('Password must be at least 8 characters')
+    body('studentId').isLength({min:8, max:8}).withMessage('id should be exactly 8'),
+    body('email').isEmail().withMessage('please enter a valid email'),
+    body('password').isLength({min:8}).withMessage('Password must be at least 8 characters')
 ]
 
 const register_post = async (req, res) => {
@@ -23,11 +23,11 @@ const register_post = async (req, res) => {
      const rows = await studentModel.isEmailExist(email)
 
      if(rows.length > 0) {
-        return res.status(400).json({msg: 'email exist'})
+        return res.status(400).json({errors: [{path:'email', msg: 'email exist'}] })
      }
 
     if(password !== confirmPassword) {
-        return res.status(400).json({path: 'password', msg:'password do not match' })
+        return res.status(400).json({errors:[{path: 'confirmPassword', msg:'password do not match'}]})
     }
 
     const id = await studentModel.createAccount(studentId, name, middleName, lastName, email, password)
@@ -38,6 +38,7 @@ const register_post = async (req, res) => {
 
     } catch(err) {
         console.log(err)
+
     }
 }
 

@@ -23,27 +23,51 @@
                  <p>Qr Event<br><span>Monitoring System</span></p>
             </div>
 
-            <div>
-                <p>Scan. Attend. <span>Stay Connected</span></p>
+            <div id="login-desc-text">
+                <p>Scan. Attend. <br><span>Stay Connected</span></p>
                 
             </div>
         </div>
 
-        <div class="login-form">
+        <div class="login-container">
+          
+            <form id="login-form">
+                <h3>Welcome Back</h3>
+                <p>Log in to your account to continue.</p>
+                <label for="login-email">Email Address</label>
+                <input id="login-email" type="email" placeholder="Enter your email" required>
+                <div class="password-group">
+                <label>Password</label>
+                <input type="password" placeholder="Enter your password" required>
+                <a class="forgot-password">Forgot Password</a>
+                </div>
+                <button id="login-btn">Login</button>
+                <div class="newstudent-div"><a id="register-here">New Student? Register here</a></div>
+            </form> 
+         
 
-
-            <div><i class="fa-solid fa-user"></i>student login</div>
-
-            <div><i class="fa-sharp fa-solid fa-chalkboard-user"></i>admin login</div>
-
-            <form>
-
-            </form>
-
+             <form id="register-form">
+                <h3>Register to Login</h3>
+                <input id="student-id" placeholder="Student ID" required>
+                <div id="stud-id-err"></div>
+                <input id="reg-name" placeholder="Name" required>
+                <input id="reg-middlename" placeholder="Middle Name optional">
+                <input id="reg-lname" placeholder="Last Name" required>
+                <input id="reg-email" type="email" placeholder="Enter your email" required>
+                <div id="reg-email-err"></div>
+                <input id="reg-password"type="password" placeholder="Enter your password" required>
+                <div id="reg-pword-err"></div>
+                <input id="reg-confirm" type="password" placeholder="Confirm Password" required>
+                <div id="confirm-err"></div>
+                <button id="reg-submit">Register Account</button>
+                <button type="button" id="back-to-login-btn">Back to Login</button>
+            </form> 
         </div>
+
 
     </div>
     
     <script src="login.js"></script>
 </body>
 </html>
+
