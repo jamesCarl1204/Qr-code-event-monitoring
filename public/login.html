@@ -34,11 +34,13 @@
             <form id="login-form">
                 <h3>Welcome Back</h3>
                 <p>Log in to your account to continue.</p>
+                <div id="log-error"></div>
                 <label for="login-email">Email Address</label>
                 <input id="login-email" type="email" placeholder="Enter your email" required>
+                
                 <div class="password-group">
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password" required>
+                <input id="login-password" type="password" placeholder="Enter your password" required>
                 <a class="forgot-password">Forgot Password</a>
                 </div>
                 <button id="login-btn">Login</button>

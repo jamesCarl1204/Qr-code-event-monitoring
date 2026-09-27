@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+   <div class="container">
+    <nav class="nav-container">
+        <div class="hero-name">regis</div>
+        <div class="nav-button">
+        <button>create class</button>
+        <button id="logout-btn">logout</button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+
+        <div class="stats-container" >
+            
+             
+            <div class="stat-card">
+                <p class="stat-label">TOTAL EVENTS</p>
+                <p>0</p>
+            </div>
+
+            <div class="stat-card">
+                <p class="stat-label">TOTAL STUDENTS</p>
+            </div>
+            
+            <div class="stat-card">
+                <p class="stat-label">ATTENDANCE RATE</p>
+            </div>
+            
+        </div>
+
+        <section class="events-section">
+            <div class="event-container">
+            <h3>school events</h3>
+
+            <table class="events-table">
+                <tr>
+                <th>event name</th>
+                <th>date & time</th>
+                <th>venue</th>
+                <th>attendances</th>
+                <th>QR</th>
+                </tr>
+                <tbody id="events-table-body">
+
+                </tbody>
+            </table>
+            </div>
+        </section>
+
+    </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

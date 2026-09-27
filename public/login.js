@@ -9,7 +9,7 @@ const idErr = document.querySelector('#stud-id-err')
 const emailErr = document.querySelector('#reg-email-err')
 const passwordErr = document.querySelector('#reg-pword-err')
 const confirmErr = document.querySelector('#confirm-err')
-
+const loginErr = document.querySelector('#log-error')
 
 registerAccount.addEventListener('click', (e) => {
     loginForm.style.display = "none";
@@ -70,4 +70,28 @@ registerForm.addEventListener('submit', async (e) => {
    
 }
         
+})
+
+loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault()
+
+    const email = document.querySelector('#login-email').value
+    const password = document.querySelector('#login-password').value
+
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify({email: email, password: password})
+    })
+
+    const data = await response.json()
+
+    if(!data.success) {
+       loginErr.textContent = data.msg
+       return
+    } else {
+        window.location.href = '/student'
+    }
+    
+
 })

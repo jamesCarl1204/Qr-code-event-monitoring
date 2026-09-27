@@ -84,7 +84,7 @@ body {
 
 #login-form input, #login-form button, #register-form input, #register-form button {
     border-radius: 10px;
-    height: 50px;
+    height: 40px;
     border:none;
     box-shadow: 0 0 0 2px var(--text-secondary);
     width: 400px
