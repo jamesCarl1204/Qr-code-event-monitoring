@@ -10,5 +10,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.get('/', (req, res)=>{
     res.sendFile(path.join(__dirname, 'public', 'login.html'))
 })
+app.get('/student', (req, res) =>{
+    res.sendFile(path.join(__dirname, 'public/studentPortal', 'index.html'))
+})
 
 app.listen(3000)
