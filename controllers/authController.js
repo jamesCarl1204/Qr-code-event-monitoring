@@ -63,15 +63,18 @@ const login_post = async (req, res) => {
         return res.status(400).json({success: false, msg: 'Invalid email or password'})
      }
      const isMatch = await bcrypt.compare(password, account.password) 
-     if(!isMatch) {
+     if(!isMatch ) {
         return res.status(400).json({success:false, msg: 'Invalid email or password'})
      }
 
-     const token = createToken({id: account.student_id})
+     req.session.user = {id: account.id, role: account.role}
+
+     const redirect = account.role === 'admin' ? '/admin/dashboard' : '/student/dashboard'
+     const token = createToken({id: account.student_id, role: account.role})
 
       res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
 
-      res.status(200).json({success: true})
+      res.status(200).json({success: true,  redirect: redirect})
     } catch (err) {
         console.log(err)
     }
