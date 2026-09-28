@@ -1,6 +1,11 @@
 body {
-  margin: 0
+  margin: 0;
 }
+
+* {
+     box-sizing:border-box;
+}
+
 
 :root {
 
@@ -26,7 +31,9 @@ body {
 
 .container {
     display: grid;
-    grid-template-rows: 50px auto
+    grid-template-rows: auto 1fr;
+    gap:2px;
+    height:100vh
 }
 
 .nav-container {
@@ -36,17 +43,24 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    flex-wrap: wrap;
+    gap:10px
 }
 
 
 .nav-container  button{
-    padding: 10px 15px
+    padding: 10px 15px;
+    border-radius: 10px
 }
 
 .stats-container {
     display: flex;
     justify-content: center;
-    padding: 10px
+    padding: 10px;
+    font-size: 1.4rem;
+    flex-wrap:wrap;
+    gap: 10px
+
 }
 
 /**.stats-main-card {
@@ -58,10 +72,17 @@ body {
     width: 300px;
     display:flex;
     flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    max-width: 100%;
+    background-color: var(--text-secondary);
+    border-radius: 10px;
+    color:var(--text-white);
+    box-shadow: 1px 2px 3px blue
     
 }
 
-.events-table, .events-table th {
+.events-table, .events-table th, .events-table td  {
     font-size: 2rem;
     border: 2px solid ;
     padding: 10px;
@@ -72,4 +93,100 @@ body {
 .events-section {
     display: flex;
     justify-content: center
+}
+
+.qr-code-container {
+    width: 100%;
+    height: 100vh;
+    background-color:rgba(0,0,0,0.2);
+    position: fixed;
+    display: none
+}
+
+
+@media screen and (max-width: 600px) {
+   .nav-container {
+       flex-direction: column;
+       align-items: flex-start;
+   }
+   .nav-button {
+    width:100%;
+    justify-content:flex-end
+   }
+   .container{ 
+    grid-template-columns: auto
+   }
+
+}
+
+.nav-buttons {
+    display: flex;
+    gap:10px
+}
+
+.event-input-container {
+    display: none;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed
+}
+
+.event-input {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    gap:5px;
+    width: 500px;
+    height: 300px;
+    background-color: var(--bg-primary);
+    padding: 50px;
+    border-radius: 10px
+}
+
+.event-input input, .event-input button {
+    height: 30px;
+    border-radius: 3px;
+    border:none;
+    outline:2px solid
+}
+
+
+
+.main-container{
+    display:grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 1fr ;
+}
+
+
+.nav-con {
+    background-color: var(--navy);
+    color: var(--text-white);
+    font-size: 1.4rem;
+    display: flex
+}
+
+.nav-con ul{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    list-style-type: none;
+    margin: 0;
+}
+
+.nav-con li {
+    width: auto;
+    padding:20px;
+    border-radius: 10px
+}
+
+.nav-con li:hover {
+    background-color: var(--navy-light)
+}
+
+.sidebar-item.active {
+    background-color: var(--navy-light)
 }

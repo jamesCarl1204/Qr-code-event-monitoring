@@ -90,7 +90,7 @@ loginForm.addEventListener('submit', async (e) => {
        loginErr.textContent = data.msg
        return
     } else {
-        window.location.href = '/student'
+        window.location.href = data.redirect
     }
     
 

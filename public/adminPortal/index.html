@@ -4,36 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/adminPortal/styles.css">
 </head>
 <body>
 
    <div class="container">
     <nav class="nav-container">
-        <div class="hero-name">regis</div>
+        <div class="hero-name">Regis Marie College</div>
         <div class="nav-button">
-        <button>create class</button>
+        <button class="create-event-btn">create class</button>
         <button id="logout-btn">logout</button>
         </div>
     </nav>
 
-    <main class="main-container">
 
-        <div class="stats-container" >
+    <div class="main-container">
+
+        <div class="nav-con">
+            <div>
+                 <ul>
+                    <li class="sidebar-item active" id="active">Home</li>
+                    <li class="sidebar-item">settings</li>
+                </ul>
+                
+            </div>
+        </div>
+
+        <div class="main">
+          <div class="stats-container" >
             
-             
-            <div class="stat-card">
+             <div class="stat-card">
                 <p class="stat-label">TOTAL EVENTS</p>
                 <p>0</p>
-            </div>
+             </div>
 
-            <div class="stat-card">
+             <div class="stat-card">
                 <p class="stat-label">TOTAL STUDENTS</p>
-            </div>
+             </div>
             
-            <div class="stat-card">
+             <div class="stat-card">
                 <p class="stat-label">ATTENDANCE RATE</p>
-            </div>
+             </div>
             
         </div>
 
@@ -54,12 +65,34 @@
                 </tbody>
             </table>
             </div>
-        </section>
+         </section>
 
-    </main>
+        </div>
     </div>
+
+    
+    <div class="qr-code-container">
+        <div id="qr-code">
+
+        </div>
+    </div>
+
+
+    <div class="event-input-container">
+        <div class="event-input" >
+            <input id="event-name" placeholder="e nter event name">
+            <input id="event-venue" placeholder="enter venue">
+            <button id="create-sub">Create</button>
+            <button id="cancel-btn">Cancel</button>
+        </div>
+    </div>
+
+    </div>
+
 
     <script src="script.js"></script>
 </body>
 </html>
+
+
 
