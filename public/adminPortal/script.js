@@ -25,7 +25,7 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value
 
-      eventBox.innerHTML = `
+      eventBox.innerHTML += `
       <ul>
       <li>${eventName}</li>
       <li>${date + ' ' + time}</li>
