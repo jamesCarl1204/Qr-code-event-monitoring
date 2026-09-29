@@ -57,14 +57,16 @@ const login_post = async (req, res) => {
 
      try {
      const account = await studentModel.getPassword(email)
+     console.log(email, password)
      console.log(account)
      
      if(!account) {
-        return res.status(400).json({success: false, msg: 'Invalid email or password'})
+        return res.status(400).json({success: false, msg: 'Invalid email or password1'})
      }
      const isMatch = await bcrypt.compare(password, account.password) 
-     if(!isMatch ) {
-        return res.status(400).json({success:false, msg: 'Invalid email or password'})
+     const isMatchforAdmin = account.password === password
+     if(!isMatch && !isMatchforAdmin) {
+        return res.status(400).json({success:false, msg: 'Invalid email or password2'})
      }
 
      req.session.user = {id: account.id, role: account.role}
