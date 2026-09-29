@@ -82,13 +82,18 @@ body {
     
 }
 
-.events-table, .events-table th, .events-table td  {
-    font-size: 2rem;
-    border: 2px solid ;
+.event-box {
     padding: 10px;
-    border-collapse: collapse;
+    background-color: var(--primary-blue)
 }
-
+.event-box ul {
+    list-style-type:none;
+}
+.event-btns a {
+    border-radius: 2px;
+    padding: 3px;
+    background-color: var(--success)
+}
 
 .events-section {
     display: flex;

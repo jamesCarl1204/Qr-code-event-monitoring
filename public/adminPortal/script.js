@@ -1,6 +1,7 @@
 const createBtn = document.querySelector('.create-event-btn')
-const tableBody = document.getElementById('events-table-body')
+const eventBox = document.getElementById('event-box')
 const eventCreateCard = document.querySelector('.event-input-container')
+
 const now = new Date()
 const formattedDateTime = now.toLocaleString('en-US', {
       year: 'numeric',
@@ -11,15 +12,7 @@ const formattedDateTime = now.toLocaleString('en-US', {
       hour12: true
 })
 
-function addRow (eventName, dateTime, venue, attendance) {
-      const row = tableBody.insertRow()
 
-      row.insertCell(0).textContent = eventName;
-      row.insertCell(1).textContent= dateTime;
-      row.insertCell(2).textContent = venue;
-      row.insertCell(3).innerHTML = attendance;
-
-}
 
 createBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
@@ -29,8 +22,20 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
 
       const eventName = document.getElementById('event-name').value;
       const eventVenue = document.getElementById('event-venue').value;
-      const studentRec = '<button>view records</button>'
-      addRow(eventName, formattedDateTime, eventVenue, studentRec)
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value
+
+      eventBox.innerHTML = `
+      <ul>
+      <li>${eventName}</li>
+      <li>${date + ' ' + time}</li>
+      <li>${eventVenue}</li>
+      </ul>
+      <div class="event-btns">
+      <a>view records</a>
+      <a>view qr</a>
+      </div>`
+
 })
 
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/adminPortal/styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -23,8 +23,9 @@
         <div class="nav-con">
             <div>
                  <ul>
-                    <li class="sidebar-item active" id="active">Home</li>
-                    <li class="sidebar-item">settings</li>
+                    <li class="sidebar-item active" id="active">Dashboard</li>
+                    <li class="sidebar-item">Events</li>
+                    <li class="sidebar-item">Student</li>
                 </ul>
                 
             </div>
@@ -50,23 +51,19 @@
 
         <section class="events-section">
             <div class="event-container">
-            <h3>school events</h3>
-
-            <table class="events-table">
-                <tr>
-                <th>event name</th>
-                <th>date & time</th>
-                <th>venue</th>
-                <th>attendances</th>
-                <th>QR</th>
-                </tr>
-                <tbody id="events-table-body">
-
-                </tbody>
-            </table>
+             <div class="event-box">
+                <ul>
+                    <li>Tech seminar </li>
+                    <li>oct 15</li>
+                    <li>av</li>
+                </ul>
+                <div class="event-btns">
+                    <a>View Attendance</a> <a>View qr</a>
+                </div>
+             </div>
             </div>
+            
          </section>
-
         </div>
     </div>
 
@@ -81,6 +78,8 @@
     <div class="event-input-container">
         <div class="event-input" >
             <input id="event-name" placeholder="e nter event name">
+            <input id="date" type="date">
+            <input id="time" type="time">
             <input id="event-venue" placeholder="enter venue">
             <button id="create-sub">Create</button>
             <button id="cancel-btn">Cancel</button>
