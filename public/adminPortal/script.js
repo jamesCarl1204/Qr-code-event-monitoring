@@ -13,6 +13,32 @@ const formattedDateTime = now.toLocaleString('en-US', {
 })
 
 
+function fetchEvents() {
+      try{
+      const response = fetch('/api/events', {
+            method:'GET',
+            headers: {'Content-Type':'application/json'}
+      })
+
+      const data = response.json()
+      
+      eventBox.innerHTML += `
+      <ul>
+      <li>${data.eventName}</li>
+      <li>${data.date + ' ' + data.time}</li>
+      <li>${data.eventVenue}</li>
+      </ul>
+      <div class="event-btns">
+      <a>view records</a>
+      <a>view qr</a>
+      </div>`
+} catch(err) {
+      console.log(err)
+}
+
+}
+
+fetchEvents()
 
 createBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
@@ -25,17 +51,13 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value
 
-      eventBox.innerHTML += `
-      <ul>
-      <li>${eventName}</li>
-      <li>${date + ' ' + time}</li>
-      <li>${eventVenue}</li>
-      </ul>
-      <div class="event-btns">
-      <a>view records</a>
-      <a>view qr</a>
-      </div>`
+      const response = fetch('/api/create/event', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({event_name: eventName, event_date:date, event_time:time, venue: eventVenue})
+      })
 
+      const data = response
 })
 
 
@@ -53,3 +75,5 @@ sidebarItem.forEach(item => {
 document.querySelector('#cancel-btn').addEventListener('click', () => {
       eventCreateCard.style.display = "none"
 })
+
+
