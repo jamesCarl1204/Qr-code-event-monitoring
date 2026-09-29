@@ -13,14 +13,14 @@ const formattedDateTime = now.toLocaleString('en-US', {
 })
 
 
-function fetchEvents() {
+async function fetchEvents() {
       try{
-      const response = fetch('/api/events', {
+      const response = await fetch('/api/events', {
             method:'GET',
             headers: {'Content-Type':'application/json'}
       })
 
-      const data = response.json()
+      const data = await response.json()
       
       eventBox.innerHTML += `
       <ul>
@@ -51,7 +51,7 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value
 
-      const response = fetch('/api/create/event', {
+      const response = fetch('/api/create/events', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({event_name: eventName, event_date:date, event_time:time, venue: eventVenue})
