@@ -78,6 +78,7 @@ loginForm.addEventListener('submit', async (e) => {
     const email = document.querySelector('#login-email').value
     const password = document.querySelector('#login-password').value
 
+    try {
     const response = await fetch('/login', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
@@ -85,6 +86,7 @@ loginForm.addEventListener('submit', async (e) => {
     })
 
     const data = await response.json()
+    console.log(data)
 
     if(!data.success) {
        loginErr.textContent = data.msg
@@ -92,6 +94,9 @@ loginForm.addEventListener('submit', async (e) => {
     } else {
         window.location.href = data.redirect
     }
+} catch(err) {
+    console.log(err)
+}
     
 
 })
