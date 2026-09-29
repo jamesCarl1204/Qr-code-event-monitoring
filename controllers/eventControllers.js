@@ -1,5 +1,5 @@
 const eventModel = require('../models/eventModel')
-
+const QRCode = require('qrcode')
 
 const createEvent_post = async (req,res) => {
 
@@ -9,7 +9,7 @@ const createEvent_post = async (req,res) => {
    const eventId = await eventModel.createEvents(event_name, event_date, event_time, venue)
 
     res.status(200).json({success: true, msg: eventId})
-    
+
     }catch(err) {
         console.log(err)
     }
@@ -25,4 +25,19 @@ const event_get = async (req, res) => {
     }
 }
 
-module.exports = {createEvent_post, event_get}
+const getEventQr = async (req, res) => {
+    try {
+        const {id} = req.params
+
+        const event = await eventModel.getEventById(id)
+
+        if(!event) {
+            return res.status(404).json({success: false, msg: 'event not found'})
+        }
+
+        const qr = await QRCode.toDataURL(event.qr_token)
+    } catch(err) {
+        console.log(err)
+    }
+}
+module.exports = {createEvent_post, event_get,getEventQr}

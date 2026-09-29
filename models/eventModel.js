@@ -1,5 +1,6 @@
 const {pool} = require('../config/db')
 const crypto = require('crypto')
+const QRCode = require('qrcode')
 const qr_token = crypto.randomUUID()
 
 const eventModel = {
@@ -17,6 +18,15 @@ const eventModel = {
         )
 
         return result.insertId
+    },
+
+    async getEventById(eventId) {
+        const [rows] = await pool.query(
+            'SELECT * FROM events WHERE id = ?',
+            [eventId]
+        )
+
+        return rows[0]
     }
 }
 

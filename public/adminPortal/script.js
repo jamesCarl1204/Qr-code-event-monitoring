@@ -1,6 +1,8 @@
 const createBtn = document.querySelector('.create-event-btn')
 const eventBox = document.getElementById('event-box')
 const eventCreateCard = document.querySelector('.event-input-container')
+const qrContainer = document.querySelector('.qr-code-container')
+const qrCode = document.querySelector('#qr-code')
 
 const now = new Date()
 const formattedDateTime = now.toLocaleString('en-US', {
@@ -31,9 +33,23 @@ async function fetchEvents() {
       </ul>
       <div class="event-btns">
       <a>view records</a>
-      <a>view qr</a>
+      <a class='view-qr' data-id="${event.id}">view qr</a>
       </div
       `
+      })
+
+       document.querySelectorAll('.view-qr').forEach(button => {
+            button.addEventListener('click', async () => {
+                  const eventId = button.dataset.id
+
+                  const response = await fetch(`/api/events/${eventId}/qr`)
+                  const data = await response.json()
+
+                  qrCode.innerHTHML = `
+                  <img src="${data.qr} alt='event qr code>'
+                  `
+                  qrContainer.style.display = 'flex'
+            })
       })
      
 } catch(err) {
@@ -43,6 +59,9 @@ async function fetchEvents() {
 }
 
 fetchEvents()
+
+
+
 
 createBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
