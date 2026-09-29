@@ -22,16 +22,20 @@ async function fetchEvents() {
 
       const data = await response.json()
       
-      eventBox.innerHTML += `
+      data.events.forEach(event => {
+            eventBox.innerHTML += ` 
       <ul>
-      <li>${data.eventName}</li>
-      <li>${data.date + ' ' + data.time}</li>
-      <li>${data.eventVenue}</li>
+      <li>${event.event_name}</li>
+      <li>${event.event_date + ' ' + event.event_time}</li>
+      <li>${event.venue}</li>
       </ul>
       <div class="event-btns">
       <a>view records</a>
       <a>view qr</a>
-      </div>`
+      </div
+      `
+      })
+     
 } catch(err) {
       console.log(err)
 }
@@ -58,6 +62,8 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       })
 
       const data = response
+
+      eventCreateCard.style.display = "none"
 })
 
 

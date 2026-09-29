@@ -12,7 +12,7 @@ const eventModel = {
     },
 
     async createEvents(eventName, eventDate, eventTime, eventVenue) {
-        const [result] = await pool.query('INSERT INTO events (event_name, event_date, event_time, event_venue, qr_token) VALUES(?,?,?,?,?)',
+        const [result] = await pool.query('INSERT INTO events (event_name, event_date, event_time, venue, qr_token) VALUES(?,?,?,?,?)',
             [eventName, eventDate, eventTime, eventVenue, qr_token]
         )
 

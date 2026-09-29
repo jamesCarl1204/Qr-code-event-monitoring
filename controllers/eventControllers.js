@@ -8,7 +8,8 @@ const createEvent_post = async (req,res) => {
 
    const eventId = await eventModel.createEvents(event_name, event_date, event_time, venue)
 
-    req.status(200).json({success: true, msg: eventId})
+    res.status(200).json({success: true, msg: eventId})
+    
     }catch(err) {
         console.log(err)
     }
