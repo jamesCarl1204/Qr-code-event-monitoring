@@ -42,5 +42,24 @@ const getEventQr = async (req, res) => {
     } catch(err) {
         console.log(err)
     }
+
 }
-module.exports = {createEvent_post, event_get,getEventQr}
+
+const getRecords = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        const records = await eventModel.getRecordById(id);
+
+        if(!records) {
+            return res.status(400).json({success: false, msg: 'not found'})
+        }
+
+        res.status(200).json({success: true, records})
+
+    }
+    catch(err) {
+        console.log(err)
+    }
+}
+module.exports = {createEvent_post, event_get,getEventQr, getRecords}

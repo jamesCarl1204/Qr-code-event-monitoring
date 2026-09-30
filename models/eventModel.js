@@ -28,7 +28,16 @@ const eventModel = {
         )
 
         return rows[0]
-    }
+    },
+
+    async getRecordById(eventId) {
+        const [rows] = await pool.query(
+            `SELECT * FROM events WHERE id = ?`
+            [eventId]
+        )
+
+        return rows
+    } 
 }
 
 module.exports = eventModel
