@@ -69,12 +69,10 @@ const login_post = async (req, res) => {
         return res.status(400).json({success:false, msg: 'Invalid email or password2'})
      }
 
-     req.session.user = {id: account.id, role: account.role}
+     req.session.user = {id: account.email, role: account.role}
 
      const redirect = account.role === 'admin' ? '/admin/dashboard' : '/student/dashboard'
-     const token = createToken({id: account.student_id, role: account.role})
 
-      res.cookie('jwt', token, {httpOnly: true, maxAge: maxAge * 1000})
 
       res.status(200).json({success: true,  redirect: redirect})
     } catch (err) {
@@ -82,4 +80,11 @@ const login_post = async (req, res) => {
     }
 }
 
-module.exports = {register_post, registerValidation, login_post}
+const getCurrentUser = (req, res) => {
+    if(!req.session.user) {
+        return res.json({user: null})
+    }
+    return res.json({user: req.session.user})
+}
+
+module.exports = {register_post, registerValidation, login_post, getCurrentUser}

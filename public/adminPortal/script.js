@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', async () => {
       const data = await response.json()
 
       if(data.user) {
-            document.querySelector('#user-name').innerHTML + data.user.email
+            document.querySelector('#user-name').innerHTML += data.user.id
       }
 })
 
