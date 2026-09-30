@@ -4,6 +4,17 @@ const eventCreateCard = document.querySelector('.event-input-container')
 const qrContainer = document.querySelector('.qr-code-container')
 const qrCode = document.querySelector('#qr-code')
 
+
+window.addEventListener('DOMContentLoaded', async () => {
+      const response = await fetch('/api/me')
+      const data = await response.json()
+
+      if(data.user) {
+            document.querySelector('#user-name').innerHTML + data.user.email
+      }
+})
+
+
 const now = new Date()
 const formattedDateTime = now.toLocaleString('en-US', {
       year: 'numeric',
@@ -33,8 +44,8 @@ async function fetchEvents() {
       </ul>
       <div class="event-btns">
       <a>view records</a>
-      <a class='view-qr' data-id="${event.id}">view qr</a>
-      </div
+      <a class="view-qr" data-id="${event.id}">view qr</a>
+      </div>
       `
       })
 
@@ -45,8 +56,8 @@ async function fetchEvents() {
                   const response = await fetch(`/api/events/${eventId}/qr`)
                   const data = await response.json()
 
-                  qrCode.innerHTHML = `
-                  <img src="${data.qr} alt='event qr code>'
+                  qrCode.innerHTML = `
+                  <img src="${data.qr}" alt='event qr code'>
                   `
                   qrContainer.style.display = 'flex'
             })

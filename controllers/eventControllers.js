@@ -36,6 +36,9 @@ const getEventQr = async (req, res) => {
         }
 
         const qr = await QRCode.toDataURL(event.qr_token)
+
+        res.status(200).json({success: true, qr: qr})
+
     } catch(err) {
         console.log(err)
     }
