@@ -32,7 +32,17 @@ const eventModel = {
 
     async getRecordById(eventId) {
         const [rows] = await pool.query(
-            `SELECT * FROM events WHERE id = ?`
+            `SELECT 
+                event_attendance.id,
+                users.student_id,
+                users.first_name,
+                users.middle_name,
+                event_attendance.scanned_at
+                FROM event_attendance
+                JOIN users
+                 ON event_attendance.user_id = users.id
+                 WHERE event_attendance.event_id = ?
+                 `
             [eventId]
         )
 

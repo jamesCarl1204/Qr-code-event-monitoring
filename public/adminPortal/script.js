@@ -6,7 +6,7 @@ const qrCode = document.querySelector('#qr-code')
 
 
 const tableContainer = document.querySelector('.attendance-container')
-const attendanceTable = document.querySelector('attendance-table')
+const attendanceBody = document.querySelector('#attendance-body')
 
 window.addEventListener('DOMContentLoaded', async () => {
       const response = await fetch('/api/me')
@@ -54,18 +54,18 @@ async function fetchEvents() {
 
       document.querySelectorAll('.view-records').forEach(button => {
             button.addEventListener('click', async () => {
-                  const eventId = button.data.id
+                  const eventId = button.dataset.id
 
-                  const response = await fetch(`/api/event/${eventId}/records`)
+                  const response = await fetch(`/api/events/${eventId}/records`)
                   const data = await response.json()
 
                   data.records.forEach(record => {
                          attendanceTable.innerHTML = `
                   <tr>
                    <td>${record.id}</td>
-                   <td>${record}</td>
-                   <td></td>
-                   <td></td>
+                   <td>${record.student_id}</td>
+                   <td>${record.first_name}</td>
+                   <td>${record.scanned_at}</td>
                    <tr>
                    `
                   })
