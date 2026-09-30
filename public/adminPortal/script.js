@@ -5,6 +5,8 @@ const qrContainer = document.querySelector('.qr-code-container')
 const qrCode = document.querySelector('#qr-code')
 
 
+const tableContainer = document.querySelector('.attendance-container')
+
 window.addEventListener('DOMContentLoaded', async () => {
       const response = await fetch('/api/me')
       const data = await response.json()
@@ -57,16 +59,20 @@ async function fetchEvents() {
                   const data = await response.json()
 
                   qrCode.innerHTML = `
-                  <img src="${data.qr}" alt='event qr code'>
+                  <img width="200px" height="200px" src="${data.qr}" alt='event qr code'>
+                  <span class="qrcode-back-btn">back</span>
                   `
                   qrContainer.style.display = 'flex'
+      
+                  document.querySelector('.qrcode-back-btn').addEventListener('click', () => {
+                  qrContainer.style.display = "none"
+               })
             })
       })
-     
+      
 } catch(err) {
       console.log(err)
 }
-
 }
 
 fetchEvents()
@@ -77,6 +83,7 @@ fetchEvents()
 createBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
 })
+
 
 document.querySelector('#create-sub').addEventListener('click', (e) => {
 
@@ -96,6 +103,10 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       eventCreateCard.style.display = "none"
 })
 
+
+document.querySelector('#table-back-btn').addEventListener('click', () => {
+      tableContainer.style.display = "none"
+})
 
 
 const sidebarItem = document.querySelectorAll('.sidebar-item')
