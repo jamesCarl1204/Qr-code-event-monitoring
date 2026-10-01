@@ -65,7 +65,7 @@ body {
     display: flex
 }*/
 
-.main {
+.dashboard-page {
     display:flex;
     flex-direction: column;
     gap: 10px;
@@ -256,8 +256,10 @@ body {
 @media screen and (max-width: 768px) {
   
    .nav-button {
-    width:100%;
-    justify-content:flex-end
+    display:flex;
+    width:auto;
+    justify-content:flex-end;
+    gap:10px
    }
    .container{ 
     grid-template-columns: auto;
