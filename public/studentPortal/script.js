@@ -20,4 +20,10 @@ const html5QrcodeScanner = new Html5QrcodeScanner(
     false
 );
 
+
+
+
+
+document.querySelector('#scan-btn').addEventListener('click', () => {
 html5QrcodeScanner.render(onScanSuccess())
+})

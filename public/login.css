@@ -69,27 +69,34 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px
+    padding: 20px;
 }
 
 #login-form, #register-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap:4px;
+    font-size:0.8rem
 }
 
 #login-form #login-email, #login-form button {
-    margin-bottom: 10px
+    margin-bottom: 5px
 }
 
 #login-form input, #login-form button, #register-form input, #register-form button {
     border-radius: 10px;
-    height: 40px;
+    height: 30px;
     border:none;
     box-shadow: 0 0 0 2px var(--text-secondary);
-    width: 400px
+    width: 300px;
+    font-size: 0.8rem
 }
 
+#login-form button, #register-form button {
+    color: var(--bg-primary);
+    background-color: var(--success);
+}
 #register-form  {
     gap: 15px;
     display: none
@@ -115,7 +122,7 @@ body {
     font-size: clamp(3rem, 8vw, 6.25rem)
 }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
     .container {
         grid-template-columns:1fr;
         grid-template-rows: auto auto;

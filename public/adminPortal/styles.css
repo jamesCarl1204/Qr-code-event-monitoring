@@ -33,7 +33,8 @@ body {
     display: grid;
     grid-template-rows: auto 1fr;
     gap:2px;
-    height:100vh
+    height:100vh;
+     background-color:rgb(0,0,0,0.2)
 }
 
 .nav-container {
@@ -59,7 +60,8 @@ body {
     padding: 10px;
     font-size: 1.4rem;
     flex-wrap:wrap;
-    gap: 10px
+    gap: 10px;
+   
 
 }
 
@@ -82,9 +84,13 @@ body {
     
 }
 
+
 .event-box {
     padding: 10px;
-    background-color: var(--primary-blue)
+    background-color: var(--primary-blue);
+    color:var(--bg-primary);
+    border-radius: 5px;
+
 }
 .event-box ul {
     list-style-type:none;
@@ -97,7 +103,8 @@ body {
 
 .events-section {
     display: flex;
-    justify-content: center
+    justify-content: center;
+    gap: 10p0
 }
 
 .qr-code-container {
