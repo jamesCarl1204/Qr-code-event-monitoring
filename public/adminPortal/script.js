@@ -59,9 +59,11 @@ async function fetchEvents() {
 
                   const response = await fetch(`/api/events/${eventId}/records`)
                   const data = await response.json()
-
+                  
+                  attendanceBody.innerHTML = ''
+                  
                   data.records.forEach(record => {
-                         attendanceBody.innerHTML = `
+                         attendanceBody.innerHTML += `
                   <tr>
                    <td>${record.id}</td>
                    <td>${record.student_id}</td>

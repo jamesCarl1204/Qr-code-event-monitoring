@@ -60,7 +60,7 @@ body {
     padding: 10px;
     font-size: 1.4rem;
     flex-wrap:wrap;
-    gap: 10px;
+    gap: 20px;
    
 
 }
@@ -68,6 +68,13 @@ body {
 /**.stats-main-card {
     display: flex
 }*/
+
+.main {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y:scroll
+}
 
 .stat-card {
     height: 100px;
@@ -104,9 +111,20 @@ body {
 .events-section {
     display: flex;
     justify-content: center;
-    gap: 10px
+    gap: 10px;
 }
 
+.event-box-container {
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    width: 500px;
+    height: 400px;
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius:20px;
+    overflow-y:auto
+}
 .qr-code-container {
     display: none;
     justify-content:center;
