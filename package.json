@@ -14,7 +14,10 @@
     "bcrypt": "^6.0.0",
     "dotenv": "^18.0.4",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "express-validator": "^7.3.2",
-    "mysql2": "^3.24.4"
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.4",
+    "qrcode": "^1.5.4"
   }
 }
