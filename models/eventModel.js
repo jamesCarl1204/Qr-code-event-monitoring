@@ -42,12 +42,28 @@ const eventModel = {
                 JOIN users
                  ON event_attendance.user_id = users.id
                  WHERE event_attendance.event_id = ?
-                 `
+                 `,
             [eventId]
         )
 
         return rows
-    } 
+    },
+    async getEventByToken(qrToken) {
+        const [rows] = await pool.query(
+            'SELECT id FROM events WHERE qr_token = ?',
+            [qrToken]
+        )
+        return rows[0]
+    },
+
+    async recordAttendance(eventId, userId) {
+        const [result] = await pool.query(
+            `INSERT INTO event_Attendance (event_id, user_id)
+            VALUES (?, ?)`,
+            [eventId, userId]
+        )
+        return result.insertId
+    }
 }
 
 module.exports = eventModel

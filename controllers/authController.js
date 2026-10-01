@@ -69,7 +69,7 @@ const login_post = async (req, res) => {
         return res.status(400).json({success:false, msg: 'Invalid email or password2'})
      }
 
-     req.session.user = {id: account.email, role: account.role}
+     req.session.user = {id: account.id, role: account.role}
 
      const redirect = account.role === 'admin' ? '/admin/dashboard' : '/student/dashboard'
 
@@ -79,6 +79,8 @@ const login_post = async (req, res) => {
         console.log(err)
     }
 }
+
+
 
 const getCurrentUser = (req, res) => {
     if(!req.session.user) {

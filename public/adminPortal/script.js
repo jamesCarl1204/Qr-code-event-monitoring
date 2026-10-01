@@ -46,7 +46,7 @@ async function fetchEvents() {
       <li>${event.venue}</li>
       </ul>
       <div class="event-btns">
-      <a class="view-records" data-id="${event.id} ">view records</a>
+      <a class="view-records" data-id="${event.id}">view records</a>
       <a class="view-qr" data-id="${event.id}">view qr</a>
       </div>
       `
@@ -54,13 +54,14 @@ async function fetchEvents() {
 
       document.querySelectorAll('.view-records').forEach(button => {
             button.addEventListener('click', async () => {
+                  
                   const eventId = button.dataset.id
 
                   const response = await fetch(`/api/events/${eventId}/records`)
                   const data = await response.json()
 
                   data.records.forEach(record => {
-                         attendanceTable.innerHTML = `
+                         attendanceBody.innerHTML = `
                   <tr>
                    <td>${record.id}</td>
                    <td>${record.student_id}</td>
@@ -69,7 +70,7 @@ async function fetchEvents() {
                    <tr>
                    `
                   })
-                 
+                 tableContainer.style.display = 'flex'
             })
       })
 

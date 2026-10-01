@@ -62,4 +62,29 @@ const getRecords = async (req, res) => {
         console.log(err)
     }
 }
-module.exports = {createEvent_post, event_get,getEventQr, getRecords}
+
+
+
+const scanAttendance = async (req, res) => {
+    try {
+
+        const { qrData } = req.body
+
+        const userId = req.session.user.id
+
+        const event = await eventModel.getEventByToken(qrData)
+
+        if(!event) {
+            return res.status(400).json({success: false, msg: 'Invalid Qr code'})
+        }
+
+        await eventModel.recordAttendance(event.id, userId)
+
+        res.status(200).json({success: true, msg: 'Attendance recorded'})
+
+    } catch(err) {
+        console.log(err)
+
+    }
+}
+module.exports = {createEvent_post, event_get,getEventQr, getRecords, scanAttendance}
