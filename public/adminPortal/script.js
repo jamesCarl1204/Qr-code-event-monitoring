@@ -50,6 +50,7 @@ async function fetchEvents() {
       <a class="view-qr" data-id="${event.id}">view qr</a>
       </div>
       `
+      document.querySelector('.stat-label').textContent = event.id
       })
 
       document.querySelectorAll('.view-records').forEach(button => {
@@ -61,7 +62,7 @@ async function fetchEvents() {
                   const data = await response.json()
                   
                   attendanceBody.innerHTML = ''
-                  
+
                   data.records.forEach(record => {
                          attendanceBody.innerHTML += `
                   <tr>
