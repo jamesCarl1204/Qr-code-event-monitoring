@@ -30,32 +30,36 @@
           <div class="view"id="view-dashboard">
             <div class="stats-container" >
                <div class="stat-card">
-                <p class="stat-labels">TOTAL EVENTS</p>
-                <p class="stat-label">0</p>
+                <p class="stat-label">TOTAL EVENTS</p>
+                <p class="total" id="total-event">0</p>
               </div>
 
               <div class="stat-card">
                 <p class="stat-label">TOTAL STUDENTS</p>
+                <p class="total" id="total-student">0</p>
               </div>
             
              <div class="stat-card">
                 <p class="stat-label">ATTENDANCE RATE</p>
+                <p class="total" id="attendance-rate">0</p>
              </div>
         </div>
 
         <section class="events-section">
-            <div class="event-box-container">
-             <div class="event-box" id="event-box">
-                <ul>
-                    <li>Tech seminar </li>
-                    <li>oct 15</li>
-                    <li>av</li>
-                </ul>
-                <div class="event-btns">
-                    <a>View Attendance</a> <a>View qr</a>
-                </div>
-                </div>
-            </div>
+            <table class="dashboard-event-table">
+             <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Venue</th>
+                    <th>Attendance</th>
+                    <th>Actions</th>
+                </tr>
+             </thead>
+             <tbody class="dashboard-event-body">
+             </tbody>
+            </table>
          </section>
          </div>
  
@@ -65,7 +69,7 @@
                 <h3>Event Management</h3>
                 <p>credit, edit and manage all events</p>
             </div>
-            <button id="add-event-btn">ADD EVENT</button>
+            <button id="event-add-btn">ADD EVENT</button>
             <div class="event-table-container">
                 <input placeholder="search" id="search-input">
                 <table class="event-section-table">

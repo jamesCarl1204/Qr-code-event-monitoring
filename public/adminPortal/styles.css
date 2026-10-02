@@ -104,11 +104,15 @@ body {
     background-color: var(--success)
 }
 
-.stat-label {
+.total {
     margin:0;
     font-size:2rem;
 
 }
+.stat-label {
+    font-size:1rem
+}
+
 .events-section {
     display: flex;
     justify-content: center;
@@ -118,12 +122,13 @@ body {
 .event-box-container {
     display:flex;
     flex-direction: column;
-    gap:10px;
+    gap:20px;
     width: 500px;
     height: 400px;
     background-color: var(--bg-primary);
     padding: 20px;
     border-radius:20px;
+    
 }
 
 .qr-code-container {
@@ -265,6 +270,8 @@ body {
 .event-section {
     display: flex;
     flex-direction: column;
+    gap:10px;
+   /* overflow:scroll*/
 }
 
 .event-section-table {
@@ -283,7 +290,7 @@ body {
     border:none;
 }
 
-#add-event-btn {
+#event-add-btn {
     align-self: flex-end;
     margin-bottom:5px;
     padding: 10px;
@@ -306,6 +313,24 @@ body {
 #section-table-body td {
     font-size:1rem
 }
+
+.dashboard-event-table{
+    background-color: var(--bg-primary);
+    border-radius: 1px;
+    border-collapse: collapse;
+    font-family:arial
+    
+}
+.dashboard-event-table th{
+    font-size:1.8rem;
+    background-color: var(--primary-blue);
+    color:white
+}
+.dashboard-event-table td {
+    border: none
+}
+
+
 @media screen and (max-width: 768px) {
   
    .nav-button {

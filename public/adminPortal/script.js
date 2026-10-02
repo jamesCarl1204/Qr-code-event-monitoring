@@ -1,9 +1,8 @@
-const createBtn = document.querySelector('.create-event-btn')
-const eventBox = document.getElementById('event-box')
+const addEventBtn = document.querySelector('#event-add-btn')
+const dashboardTable = document.querySelector('.dashboard-event-table')
 const eventCreateCard = document.querySelector('.event-input-container')
 const qrContainer = document.querySelector('.qr-code-container')
 const qrCode = document.querySelector('#qr-code')
-
 
 const tableContainer = document.querySelector('.attendance-container')
 const attendanceBody = document.querySelector('#attendance-body')
@@ -28,9 +27,29 @@ const formattedDateTime = now.toLocaleString('en-US', {
       hour12: true
 })
 
+function formatDate(date) {
+      return new Date(date).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+      })
+}
 
+function formatTime(time) {
+      const [hour, minute] = time.split(':')
+
+      const date = new Date()
+      date.setHours(hour, minute, 0)
+
+      return date.toLocaleTimeString('en-US', {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true
+      })
+}
 async function fetchEvents() {
       try{
+      document.querySelector('.dashboard-event-body').innerHTML = ""
       const response = await fetch('/api/events', {
             method:'GET',
             headers: {'Content-Type':'application/json'}
@@ -38,26 +57,31 @@ async function fetchEvents() {
 
       const data = await response.json()
       
+      let totalEvent = 0
       data.events.forEach(event => {
-            eventBox.innerHTML += ` 
-      <ul>
-      <li>${event.event_name}</li>
-      <li>${event.event_date + ' ' + event.event_time}</li>
-      <li>${event.venue}</li>
-      </ul>
-      <div class="event-btns">
-      <a class="view-records" data-id="${event.id}">view records</a>
-      <a class="view-qr" data-id="${event.id}">view qr</a>
-      </div>
-      `
+            totalEvent++
+
+       document.querySelector('.dashboard-event-body').innerHTML += ` 
+      <tr class="event-boxr">
+      <td>${event.event_name}</td>
+      <td>${formatDate(event.event_date)}</td>
+      <td> ${formatTime(event.event_time)}</td>
+      <td>${event.venue}</td>
+      <td>${totalEvent}</td>
+      <td>
+      <button class="view-records" data-id="${event.id}">view records</button>
+      <button class="view-qr" data-id="${event.id}">view qr</button>
+      </td>
+      </tr>`
+      
       document.querySelector('.event-section-table').innerHTML += `
       <th>${event.event_name}</th>
-      <th>${event.event_date + ' ' + event.event_time}</th>
+      <th>${formatDate(event.event_date) + ' ' + formatTime(event.event_time)}</th>
       <th>${event.venue}</th>
       <th><button>delete</button</th>
       `
 
-      document.querySelector('.stat-label').textContent = event.id
+      document.querySelector('#total-event').textContent = event.id
       })
 
       document.querySelectorAll('.view-records').forEach(button => {
@@ -115,7 +139,7 @@ fetchEvents()
 
 
 
-createBtn.addEventListener('click', (e) => {
+addEventBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
 })
 
@@ -134,7 +158,7 @@ document.querySelector('#create-sub').addEventListener('click', (e) => {
       })
 
       const data = response
-
+      fetchEvents()
       eventCreateCard.style.display = "none"
 })
 
