@@ -267,11 +267,15 @@ body {
     flex-direction: column;
 }
 
+.event-section-table {
+    font-size:1rem;
+}
 .event-table-container {
     display:flex;
     flex-direction:column;
     gap:10px
 }
+
 
 #search-input{
     padding:10px;
@@ -292,11 +296,14 @@ body {
 .event-section-table ,th {
     border-collapse:collapse;
     padding:10px;
-    font-size: 2rem;
+    
     background-color: white;
 }
 
-#section-table-body {
+.event-section-table th {
+    font-size: 1rem;
+}
+#section-table-body td {
     font-size:1rem
 }
 @media screen and (max-width: 768px) {

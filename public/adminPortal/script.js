@@ -50,6 +50,13 @@ async function fetchEvents() {
       <a class="view-qr" data-id="${event.id}">view qr</a>
       </div>
       `
+      document.querySelector('.event-section-table').innerHTML += `
+      <th>${event.event_name}</th>
+      <th>${event.event_date + ' ' + event.event_time}</th>
+      <th>${event.venue}</th>
+      <th><button>delete</button</th>
+      `
+
       document.querySelector('.stat-label').textContent = event.id
       })
 
@@ -144,11 +151,12 @@ sidebarItem.forEach(item => {
       item.addEventListener('click', () => {
             sidebarItem.forEach(i => i.classList.remove('active'))
              item.classList.add('active')
-})
-  
- views.forEach(v => v.style.display = 'none');
+             views.forEach(v => v.style.display = 'none');
  document.getElementById(`view-${item.dataset.target}`).style.display = "flex"
 
+})
+  
+ 
 })
 
 
