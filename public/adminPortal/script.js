@@ -72,6 +72,7 @@ async function fetchEvents() {
                    <td>${record.scanned_at}</td>
                    <tr>
                    `
+                   
                   })
                  tableContainer.style.display = 'flex'
             })
@@ -137,12 +138,17 @@ document.querySelector('#table-back-btn').addEventListener('click', () => {
 
 
 const sidebarItem = document.querySelectorAll('.sidebar-item')
+const views = document.querySelectotAll('.views')
 
 sidebarItem.forEach(item => {
       item.addEventListener('click', () => {
             sidebarItem.forEach(i => i.classList.remove('active'))
              item.classList.add('active')
 })
+  
+ views.forEach(v => v.style.display = 'none');
+ document.getElementById(`view-${item.dataset.target}`).style.display = "flex"
+
 })
 
 

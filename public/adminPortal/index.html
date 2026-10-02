@@ -20,13 +20,13 @@
     <div class="main-container">
         <div class="sidebar-con">
                  <ul class="sidebar">
-                    <li class="sidebar-item active" id="active">Dashboard</li>
-                    <li class="sidebar-item">Events</li>
-                    <li class="sidebar-item">Student</li>
+                    <li class="sidebar-item active" id="active" data-target="dashboard">Dashboard</li>
+                    <li class="sidebar-item" data-target="events">Events</li>
+                    <li class="sidebar-item" data-target="students">Students</li>
                 </ul>
         </div>
 
-        <div class="main">
+        <div  class="view" id="main">
           <div class="dashboard-page">
             <div class="stats-container" >
                <div class="stat-card">
@@ -59,9 +59,29 @@
          </section>
          </div>
  
-         <diV class="event-section-container">
+         <diV class="view" id="event-section-container">
            <section class="event-section">
+            <div>
+                <h3>Event Management</h3>
+                <p>credit, edit and manage all events</p>
+            </div>
+            <button id="add-event-btn">ADD EVENT</button>
+            <div class="event-table-container">
+                <input placeholder="search" id="search-input">
+                <table class="event-section-table">
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>venue</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="section-table-body">
 
+                    </tbody>
+                </table>
+            </div>
            </section>
          </diV>
         </div>
@@ -106,7 +126,7 @@
     </div>
 
 
-    <script src="/adminPortal/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 

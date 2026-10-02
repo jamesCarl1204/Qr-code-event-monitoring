@@ -61,13 +61,15 @@ body {
     gap: 20px;
 }
 
-/**.stats-main-card {
-    display: flex
-}*/
+#main {
+    width: 100%
+}
 
 .dashboard-page {
     display:flex;
     flex-direction: column;
+    justify-content: center;
+    align-items:center;
     gap: 10px;
     width: 100%
 }
@@ -252,7 +254,51 @@ body {
 }
 
 
+#event-section-container {
+    display: none;
+    justify-content: center;
+    gap:10px;
+    font-family:arial;
 
+}
+
+.event-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.event-table-container {
+    display:flex;
+    flex-direction:column;
+    gap:10px
+}
+
+#search-input{
+    padding:10px;
+    border-radius:10px;
+    border:none;
+}
+
+#add-event-btn {
+    align-self: flex-end;
+    margin-bottom:5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--success);
+    color: var(--text-white);
+    
+}
+
+.event-section-table ,th {
+    border-collapse:collapse;
+    padding:10px;
+    font-size: 2rem;
+    background-color: white;
+}
+
+#section-table-body {
+    font-size:1rem
+}
 @media screen and (max-width: 768px) {
   
    .nav-button {
@@ -276,3 +322,5 @@ body {
     gap:10px
    }
 }
+
+
