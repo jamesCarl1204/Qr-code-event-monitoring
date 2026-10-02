@@ -138,7 +138,7 @@ document.querySelector('#table-back-btn').addEventListener('click', () => {
 
 
 const sidebarItem = document.querySelectorAll('.sidebar-item')
-const views = document.querySelectotAll('.views')
+const views = document.querySelectorAll('.view')
 
 sidebarItem.forEach(item => {
       item.addEventListener('click', () => {

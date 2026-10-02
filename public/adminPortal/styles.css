@@ -65,7 +65,7 @@ body {
     width: 100%
 }
 
-.dashboard-page {
+#view-dashboard {
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -254,7 +254,7 @@ body {
 }
 
 
-#event-section-container {
+#view-event-section{
     display: none;
     justify-content: center;
     gap:10px;
