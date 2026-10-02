@@ -4,8 +4,15 @@ const {studentModel} = require('../models/studentModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const maxAge = 30 * 24 * 60 * 60;
+const rateLimit = require('express-rate-limit')
 
-
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: { success: false, msg: 'Too many login attemps, try again later'},
+    standardHeaders: true,
+    legacyHeaders: false
+})
 const registerValidation = [
     body('studentId').isLength({min:8, max:8}).withMessage('id should be exactly 8'),
     body('email').isEmail().withMessage('please enter a valid email'),
@@ -89,4 +96,4 @@ const getCurrentUser = (req, res) => {
     return res.json({user: req.session.user})
 }
 
-module.exports = {register_post, registerValidation, login_post, getCurrentUser}
+module.exports = {register_post, registerValidation, login_post, getCurrentUser, loginLimiter}
