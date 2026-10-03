@@ -70,6 +70,17 @@ const eventModel = {
             [eventId, userId]
         )
         return result.insertId
+    },
+     
+    async getAttendanceCount(userId) {
+        const [rows] = await pool.query(
+            `SELECT COUNT(*) AS count
+            FROM event_attendance
+            WHERE user_id = ?`,
+            [userId]
+        )
+        return rows[0].count
+        
     }
 }
 
