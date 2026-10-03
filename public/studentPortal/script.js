@@ -41,12 +41,12 @@ async function fetchEvents() {
         const response =  await fetch('/api/student/events')
         const data = await response.json()
 
-        data.forEach(event => {
-            eventTable.innerHTML = `
+        data.events.forEach(event => {
+            eventTable.innerHTML += `
             <tr>
             <td>${event.event_name}</td>
-            <td>${event.event_date}</td>
-            <td>${event.event_time}</td>
+            <td>${formatDate(event.event_date)}</td>
+            <td>${formatTime(event.event_time)}</td>
             <td>${event.venue}</td>
             <td>${event.status}</td>
             <tr>
@@ -104,6 +104,7 @@ sidebarItem.forEach(item => {
     item.addEventListener('click', () => {
         sidebarItem.forEach(i => i.classList.remove('active'))
         item.classList.add('active')
+        
     })
 
 })

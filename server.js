@@ -19,7 +19,7 @@ app.use(session({
 app.use(express.json())
 app.use(routes)
 app.use(eventRoutes)
-app.use(eventRoutes)
+app.use(stundentRoutes)
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res)=>{

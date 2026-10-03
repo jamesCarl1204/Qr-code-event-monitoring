@@ -12,7 +12,6 @@ const getScanCount = async (req, res) => {
     }
 }
 
-
 const scanAttendance = async (req, res) => {
     try {
 
@@ -45,4 +44,17 @@ const scanAttendance = async (req, res) => {
     }
 }
 
-module.exports = {scanAttendance, getScanCount}
+const getStudentEvents = async (req,res) => {
+    try {
+        const userId = req.session.user.id
+        
+        const events = await studentModel.getStudentEvents(userId)
+
+        res.status(200).json({success: true, events: events})
+
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+module.exports = {scanAttendance, getScanCount, getStudentEvents}

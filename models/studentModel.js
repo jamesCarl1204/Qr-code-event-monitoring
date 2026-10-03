@@ -30,24 +30,27 @@ const studentModel = {
             return result.insertId
         },
     
-    async getEvents(userId) {
-        const [rows] = pool.query(`
+    async getStudentEvents(userId) {
+        const [rows] = await pool.query(`
         SELECT
            events.id,
            events.event_name,
            events.event_date,
            events.event_time,
-           events.venue
+           events.venue,
            CASE
              WHEN event_attendance.user_id IS NOT NULL
-             THEN 'attended
-             ELSE 'Not attended
+             THEN 'attended'
+             ELSE 'Not attended'
             END AS status
             FROM events
             LEFT JOIN  event_attendance
             ON events.id = event_attendance.event_id
             AND event_attendance.user_id = ? 
             ORDER BY events.event_date DESC`, [userId])
+
+            return rows
     }
 }
+
 module.exports = studentModel

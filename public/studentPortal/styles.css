@@ -158,13 +158,16 @@ body {
 }
 
 .recent-event-table {
-    font-size: 1.8rem;
     border-collapse:collapse;
     width:100%
 }
 .recent-event-table th {
+    font-size: 1.8rem;
     background-color: var(--primary-blue);
     color:var(--bg-primary)
+}
+.event-table-body ::-webkit-textfield-decoration-container{
+    font-size:1rem
 }
 
 #view-scan{
