@@ -1,3 +1,4 @@
+const eventTable = document.querySelector('event-table-body')
 
 async function fetchAttendanceCount() {
     try {
@@ -7,6 +8,46 @@ async function fetchAttendanceCount() {
         if(data.success) {
             document.querySelector('#attend-count').textContent = data.count
         }
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+
+function formatDate(date) {
+    return new Date(date).toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    })
+}
+
+function formatTime(time) {
+    const [hour, minute] = time.split(':')
+
+    const date = new Date()
+    date.setHours(hour, minute, 0);
+
+    return date.toLocaleString('in-us', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    })
+}
+
+async function fetchEvents() {
+    
+    try {
+        const response =  await fetch('/api/events')
+        const data = response.json()
+
+        data.forEach(event => {
+            eventTable.innerHTML = `
+            <tr>
+            <th>${event.event_name}</th>
+            <th>${event.event_date}</th>
+            `
+        })
     } catch(err) {
         console.log(err)
     }
