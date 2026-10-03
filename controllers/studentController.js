@@ -4,7 +4,7 @@ const getScanCount = async (req, res) => {
     try {
         const userId = req.session.user.id
         
-        const count = await eventModel.getAttendanceCount(userId)
+        const count = await studentModel.getAttendanceCount(userId)
 
         res.status(200).json({success: true, count: count})
     } catch(err) {
@@ -20,14 +20,14 @@ const scanAttendance = async (req, res) => {
 
         const userId = req.session.user.id
 
-        const event = await eventModel.getEventByToken(qrData)
+        const event = await studentModel.getEventByToken(qrData)
 
         if(!event) {
             return res.status(400).json({success: false, msg: 'Invalid Qr code'})
         }
 
         try {
-        await eventModel.recordAttendance(event.id, userId)
+        await studentModel.recordAttendance(event.id, userId)
 
         res.status(200).json({sucess: true, msg: 'attendance recorded'})
         } catch(err) {
@@ -38,7 +38,6 @@ const scanAttendance = async (req, res) => {
 
             res.status(500).json({success: false, msg: 'server error'})
         }
-        res.status(200).json({success: true, msg: 'Attendance recorded'})
    
     } catch(err) {
         console.log(err)
