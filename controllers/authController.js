@@ -1,6 +1,6 @@
 const {pool} = require('../config/db')
 const {body, validationResult} = require('express-validator')
-const {studentModel} = require('../models/studentModel')
+const {studentModel} = require('../models/authModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const maxAge = 30 * 24 * 60 * 60;

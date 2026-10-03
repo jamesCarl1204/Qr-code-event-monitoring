@@ -1,28 +1,33 @@
 const {pool} = require('../config/db')
-const bcrypt = require('bcrypt')
 
 const studentModel = {
 
-    async isEmailExist(email) {
-        const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email])
-        
-        return rows
-    },
-
-    async createAccount(studentId, first_name, middleName, lastName, email, password,) {
-        const salt = 12
-        const hashedPassword = await bcrypt.hash(password, salt)
-        const [result] = await pool.query('INSERT INTO users (student_id, first_name, middle_name, last_name, email, password, role) VALUES(?,?,?,?,?,?,?)',
-            [studentId, first_name, middleName, lastName, email, hashedPassword, 'student']
+   async getEventByToken(qrToken) {
+        const [rows] = await pool.query(
+            'SELECT id FROM events WHERE qr_token = ?',
+            [qrToken]
         )
-        return result.insertId
+        return rows[0]
+    },
+     
+    async getAttendanceCount(userId) {
+        const [rows] = await pool.query(
+            `SELECT COUNT(*) AS count
+            FROM event_attendance
+            WHERE user_id = ?`,
+            [userId]
+        )
+        return rows[0].count
+        
     },
 
-    async getPassword(email) {
-        const [rows] = await pool.query('SELECT * FROM users WHERE email = ?',[email])
-
-        return rows[0]
-    }
+    async recordAttendance(eventId, userId) {
+            const [result] = await pool.query(
+                `INSERT INTO event_Attendance (event_id, user_id)
+                VALUES (?, ?)`,
+                [eventId, userId]
+            )
+            return result.insertId
+        },
 }
-
-module.exports= {studentModel}
+module.exports = {studentModel}
