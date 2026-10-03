@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/studentPortal/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
 </head>
 <body>
@@ -15,28 +15,53 @@
         <button id="logout-btn">logout</button>
        </nav>
 
-       <div class="attend-container">
-         <div class="attend-count-box">
-            <h3>ATTENDED EVENT</h3>
-            <p id="attend-num"></p>
-         </div>
-       </div>
-
-       <div class="main-container">
-         <div class="scan-cam-container" >
-            <div id="scan-cam">
-
-            </div>
-            <div class="scan-buttons">
-                <button id="scan-btn">Start Scan</button>
-            </div>
+       <section class="main-container">
+        <div class="sidebar-con">
+            <ul class="sidebar">
+                <li class="sidebar-item active"  data-target="home">Home</li>
+                <li class="sidebar-item" data-target="scan">Scan</li>
+            </ul>
         </div>
-       </div>
-        
-     
+
+        <main class="main-section">
+
+            <div class="view" id="view-home">
+                <div class="student-info-con">
+                    <h3>Welcome back</h3>
+                    <h1>Juan Dela Cruz</h1>
+                </div>
+                <div class="student-stat-con">
+                    <div id="total-event-attended">
+                        <h3>Total event Attended</h3>
+                        <p id="attend-count">1</p>
+                    </div>
+                </div>
+
+            <div class="view" id="view-scan">
+                <div class="recent-event">
+                    <table class="recent-event-table">
+                        <thead>
+                            <tr>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>venue</th>
+                                <th>status</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+         </div>
+            
+        </main>
+
+       </section>
+       
     </div>
 
-    <script src="/studentPortal/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
 

@@ -1,9 +1,24 @@
 
+async function fetchAttendanceCount() {
+    try {
+        const response = await fetch('/api/attendance/count')
+        const data = await response.json()
 
+        if(data.success) {
+            document.querySelector('#attend-count').textContent = data.count
+        }
+    } catch(err) {
+        console.log(err)
+    }
+}
 
+fetchAttendanceCount()
 
 async function onScanSuccess(decodedText, decodedResult) {
     console.log(decodedText)
+
+
+    try {
 
      const response = await fetch('/api/attendance/scan', {
         method: 'POST',
@@ -12,8 +27,19 @@ async function onScanSuccess(decodedText, decodedResult) {
     })
 
     const data = response.json()
-}
 
+    if(data.success) {
+        console.log(data.msg)
+        fetchAttendanceCount()
+    }
+    else {
+        console.log(data.msg)
+    }
+
+} catch (err) {
+    console.log(err)
+}
+}
 
 const html5QrcodeScanner = new Html5QrcodeScanner(
     "scan-cam",
@@ -21,8 +47,17 @@ const html5QrcodeScanner = new Html5QrcodeScanner(
     false
 );
 
-
-
 document.querySelector('#scan-btn').addEventListener('click', () => {
 html5QrcodeScanner.render(onScanSuccess)
+})
+
+const views = document.querySelectorAll('.view')
+const sidebarItem = document.querySelectorAll('.sidebar-item')
+
+sidebarItem.forEach(item => {
+    item.addEventListener('click', () => {
+        sidebarItem.forEach(i => i.classList.remove('active'))
+        item.classList.add('active')
+    })
+
 })
