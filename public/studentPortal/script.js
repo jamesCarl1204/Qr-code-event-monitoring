@@ -1,4 +1,4 @@
-const eventTable = document.querySelector('event-table-body')
+const eventTable = document.querySelector('.event-table-body')
 
 async function fetchAttendanceCount() {
     try {
@@ -38,14 +38,18 @@ function formatTime(time) {
 async function fetchEvents() {
     
     try {
-        const response =  await fetch('/api/events')
-        const data = response.json()
+        const response =  await fetch('/api/student/events')
+        const data = await response.json()
 
         data.forEach(event => {
             eventTable.innerHTML = `
             <tr>
-            <th>${event.event_name}</th>
-            <th>${event.event_date}</th>
+            <td>${event.event_name}</td>
+            <td>${event.event_date}</td>
+            <td>${event.event_time}</td>
+            <td>${event.venue}</td>
+            <td>${event.status}</td>
+            <tr>
             `
         })
     } catch(err) {
@@ -53,6 +57,7 @@ async function fetchEvents() {
     }
 }
 
+fetchEvents()
 fetchAttendanceCount()
 
 async function onScanSuccess(decodedText, decodedResult) {
@@ -67,7 +72,7 @@ async function onScanSuccess(decodedText, decodedResult) {
         body: JSON.stringify({qrData: decodedText})
     })
 
-    const data = response.json()
+    const data = await response.json()
 
     if(data.success) {
         console.log(data.msg)
