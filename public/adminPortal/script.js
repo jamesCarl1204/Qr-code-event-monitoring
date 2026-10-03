@@ -49,7 +49,6 @@ function formatTime(time) {
 }
 async function fetchEvents() {
       try{
-      document.querySelector('.dashboard-event-body').innerHTML = ""
       const response = await fetch('/api/events', {
             method:'GET',
             headers: {'Content-Type':'application/json'}
@@ -57,31 +56,32 @@ async function fetchEvents() {
 
       const data = await response.json()
       
-      let totalEvent = 0
-      data.events.forEach(event => {
-            totalEvent++
+      const dashboardBody = document.querySelector('.dashboard-event-body')
+      const sectionBody = document.querySelector('.event-section-table')
 
-       document.querySelector('.dashboard-event-body').innerHTML += ` 
-      <tr class="event-boxr">
+      data.events.forEach((event,index) => {
+      dashboardBody.innerHTML += `
+      <tr class="event-boxe">
       <td>${event.event_name}</td>
       <td>${formatDate(event.event_date)}</td>
       <td> ${formatTime(event.event_time)}</td>
       <td>${event.venue}</td>
-      <td>${totalEvent}</td>
+      <td>${event.attendance_count}</td>
       <td>
       <button class="view-records" data-id="${event.id}">view records</button>
       <button class="view-qr" data-id="${event.id}">view qr</button>
       </td>
       </tr>`
       
-      document.querySelector('.event-section-table').innerHTML += `
+
+      sectionBody.innerHTML += `
       <th>${event.event_name}</th>
       <th>${formatDate(event.event_date) + ' ' + formatTime(event.event_time)}</th>
       <th>${event.venue}</th>
       <th><button>delete</button</th>
       `
 
-      document.querySelector('#total-event').textContent = event.id
+      document.querySelector('#total-event').textContent = data.events.length
       })
 
       document.querySelectorAll('.view-records').forEach(button => {
@@ -91,7 +91,6 @@ async function fetchEvents() {
 
                   const response = await fetch(`/api/events/${eventId}/records`)
                   const data = await response.json()
-                  
                   attendanceBody.innerHTML = ''
 
                   data.records.forEach(record => {
@@ -144,20 +143,21 @@ addEventBtn.addEventListener('click', (e) => {
 })
 
 
-document.querySelector('#create-sub').addEventListener('click', (e) => {
+document.querySelector('#create-sub').addEventListener('click', async (e) => {
 
       const eventName = document.getElementById('event-name').value;
       const eventVenue = document.getElementById('event-venue').value;
       const date = document.getElementById('date').value;
       const time = document.getElementById('time').value
 
-      const response = fetch('/api/create/events', {
+      const response = await fetch('/api/create/events', {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({event_name: eventName, event_date:date, event_time:time, venue: eventVenue})
       })
 
-      const data = response
+      const data = await response.json()
+
       fetchEvents()
       eventCreateCard.style.display = "none"
 })

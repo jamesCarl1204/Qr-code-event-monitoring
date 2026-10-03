@@ -6,7 +6,14 @@ const QRCode = require('qrcode')
 const eventModel = {
 
     async getEvents() {
-        const [rows] = await pool.query('SELECT * FROM events')
+        const [rows] = await pool.query(`
+            SELECT events.*,
+              COUNT(event_attendance.id) AS attendance_count
+              FROM events
+              LEFT JOIN event_attendance
+              ON events.id = event_attendance.event_id
+              GROUP BY events.id
+             `)
         
         return rows
 
