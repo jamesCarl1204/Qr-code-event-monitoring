@@ -135,9 +135,6 @@ async function fetchEvents() {
 
 fetchEvents()
 
-
-
-
 addEventBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex'
 })

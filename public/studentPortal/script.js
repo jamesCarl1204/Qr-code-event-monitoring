@@ -73,7 +73,9 @@ async function onScanSuccess(decodedText, decodedResult) {
 
     if(data.success) {
         console.log(data.msg)
+        
         fetchAttendanceCount()
+        fetchEvents()
     }
     else {
         console.log(data.msg)
@@ -94,15 +96,16 @@ const views = document.querySelectorAll('.view')
 const sidebarItem = document.querySelectorAll('.sidebar-item')
 
 sidebarItem.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', async () => {
         sidebarItem.forEach(i => i.classList.remove('active'))
         item.classList.add('active')
         views.forEach(v => v.style.display = 'none')
         document.getElementById(`view-${item.dataset.target}`).style.display = 'flex'
         if(item.dataset.target === 'scan') {
             html5QrcodeScanner.render(onScanSuccess)
+        } else {
+           await html5QrcodeScanner.clear()
         }
-        html5QrcodeScanner.clear()
     })
 
 })

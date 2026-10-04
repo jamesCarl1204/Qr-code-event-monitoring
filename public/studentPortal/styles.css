@@ -100,7 +100,6 @@ body {
     background-color:rgb(0,0,0,0.2)
 }
 .sidebar-con {
-    display: flex
 }
 .sidebar {
     display:flex;
@@ -200,11 +199,16 @@ body {
 
 @media screen and (max-width: 768px ) {
     .main-container {
-        flex-direction: column
+        flex-direction: column;
+        gap: 10px
     }
     .sidebar{
         flex-direction:row;
-        justify-content:center;
+        justify-content:flex-start;
         gap:10px
+    }
+    .sidebar-con {
+         width:100%;
+
     }
 }
