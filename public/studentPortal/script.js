@@ -62,10 +62,7 @@ fetchAttendanceCount()
 
 async function onScanSuccess(decodedText, decodedResult) {
     console.log(decodedText)
-
-
     try {
-
      const response = await fetch('/api/attendance/scan', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
@@ -93,10 +90,6 @@ const html5QrcodeScanner = new Html5QrcodeScanner(
     false
 );
 
-document.querySelector('#scan-btn').addEventListener('click', () => {
-html5QrcodeScanner.render(onScanSuccess)
-})
-
 const views = document.querySelectorAll('.view')
 const sidebarItem = document.querySelectorAll('.sidebar-item')
 
@@ -104,7 +97,14 @@ sidebarItem.forEach(item => {
     item.addEventListener('click', () => {
         sidebarItem.forEach(i => i.classList.remove('active'))
         item.classList.add('active')
-        
+        views.forEach(v => v.style.display = 'none')
+        document.getElementById(`view-${item.dataset.target}`).style.display = 'flex'
+        if(item.dataset.target === 'scan') {
+            html5QrcodeScanner.render(onScanSuccess)
+        }
+        html5QrcodeScanner.clear()
     })
 
 })
+
+//document.querySelector('#scan-btn').addEventListener('click', () => {
