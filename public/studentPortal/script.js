@@ -49,7 +49,7 @@ async function fetchEvents() {
             <td>${formatTime(event.event_time)}</td>
             <td>${event.venue}</td>
             <td>${event.status}</td>
-            <tr>
+            </tr>
             `
         })
     } catch(err) {
