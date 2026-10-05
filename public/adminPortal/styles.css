@@ -25,7 +25,7 @@ body {
 
     --success: #22C55E;
     --warning: #F59E0B;
-    --danger: #EF4444;
+    --logout: #EF4444;
 }
 
 .container {
@@ -217,6 +217,8 @@ body {
     width: auto;
     padding:20px;
     border-radius: 10px;
+    display:flex;
+    gap:5px
 }
 
 .sidebar-con li:hover {
@@ -353,7 +355,10 @@ body {
     padding:10px;
     color:white
 }
-
+#logout-btn {
+    background-color: var(--logout);
+    color:white
+}
 @media screen and (max-width: 768px) {
   
    .nav-button {

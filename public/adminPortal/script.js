@@ -185,3 +185,11 @@ document.querySelector('#cancel-btn').addEventListener('click', () => {
 })
 
 
+document.querySelector('#logout-btn').addEventListener('click', async () => {
+     const response = await fetch('/logout', {method: 'POST'})
+     const data = await response.json();
+
+     if(data.success) {
+      window.location.href = data.redirect
+     } 
+})

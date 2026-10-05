@@ -8,7 +8,7 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     >
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/adminPortal/styles.css">
 </head>
 <body>
 
@@ -16,17 +16,16 @@
       <nav class="nav-container">
           <div class="hero-name">Regis Marie College  <span id="user-name">User:</span></div>
           <div class="nav-button">
-          <button class="create-event-btn">create class</button>
-          <button id="logout-btn">logout</button>
+          <button id="logout-btn"><i class="fa-solid fa-left-from-bracket"></i>logout</button>
           </div>
       </nav>
 
     <div class="main-container">
         <div class="sidebar-con">
                  <ul class="sidebar">
-                    <li class="sidebar-item active" id="active" data-target="dashboard">Dashboard</li>
-                    <li class="sidebar-item" data-target="event-section">Events</li>
-                    <li class="sidebar-item" data-target="students">Students</li>
+                    <li class="sidebar-item active" id="active" data-target="dashboard"><i class="fa-solid fa-display-chart-up"></i>Dashboard</li>
+                    <li class="sidebar-item" data-target="event-section"><i class="fa-solid fa-calendar-days"></i>Events</li>
+                    <li class="sidebar-item" data-target="students"><i class="fa-sharp fa-solid fa-user-graduate"></i>Students</li>
                 </ul>
         </div>
 
@@ -43,20 +42,20 @@
                     <i class="fa-sharp-duotone fa-solid fa-qrcode"></i>
                 </div>
             </div>
-            
+
             <div class="stats-container" >
                <div class="stat-card">
-                <p class="stat-label">TOTAL EVENTS</p>
+                <p class="stat-label"><i class="fa-solid fa-calendar-days"></i>TOTAL EVENTS</p>
                 <p class="total" id="total-event">0</p>
               </div>
 
               <div class="stat-card">
-                <p class="stat-label">TOTAL STUDENTS</p>
+                <p class="stat-label"><i class="fa-sharp fa-solid fa-user-graduate"></i>TOTAL STUDENTS</p>
                 <p class="total" id="total-student">0</p>
               </div>
             
              <div class="stat-card">
-                <p class="stat-label">ATTENDANCE RATE</p>
+                <p class="stat-label"><i class="fa-solid fa-star"></i>ATTENDANCE RATE</p>
                 <p class="total" id="attendance-rate">0</p>
              </div>
         </div>
@@ -146,7 +145,7 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="/adminPortal/script.js"></script>
 </body>
 </html>
 

@@ -24,7 +24,7 @@ body {
 
     --success: #22C55E;
     --warning: #F59E0B;
-    --danger: #EF4444;
+    --logout: #EF4444;
 }
 
 .container {
@@ -210,6 +210,12 @@ body {
     color:white;
     border-radius: 10px;
     padding: 10px
+}
+
+#logout-btn {
+    background-color: var(--logout);
+    color:white;
+    border-radius:5px
 }
 
 @media screen and (max-width: 768px ) {
