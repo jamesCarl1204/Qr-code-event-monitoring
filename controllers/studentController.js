@@ -26,18 +26,17 @@ const scanAttendance = async (req, res) => {
         }
 
         try {
-        await studentModel.recordAttendance(event.id, userId)
 
-        res.status(200).json({sucess: true, msg: 'attendance recorded'})
+        await studentModel.recordAttendance(event.id, userId)
+        res.status(200).json({success: true, msg: 'attendance recorded'})
+
         } catch(err) {
 
             if(err.code === 'ER_DUP_ENTRY') {
                 return res.status(400).json({success: false, msg: 'you already attended this event'})
             }
-
             res.status(500).json({success: false, msg: 'server error'})
         }
-   
     } catch(err) {
         console.log(err)
 

@@ -97,4 +97,15 @@ const getCurrentUser = (req, res) => {
     return res.json({user: req.session.user})
 }
 
-module.exports = {register_post, registerValidation, login_post, getCurrentUser, loginLimiter}
+const logout_post = (req, res) => {
+    req.session.destroy((err) => {
+        if(err) {
+            console.log(err)
+            return res.status(500).json({success:false, msg: 'logout failed'})
+        }
+        res.clearCookie('connect.sid')
+        res.status(200).json({success: true, redirect: '/'})
+    })
+}
+
+module.exports = {register_post, registerValidation, login_post, getCurrentUser, loginLimiter, logout_post}
