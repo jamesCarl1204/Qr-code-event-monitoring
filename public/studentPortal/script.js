@@ -1,5 +1,12 @@
 const eventTable = document.querySelector('.event-table-body')
 
+window.addEventListener('DOMContentLoaded', async () => {
+    const response = await fetch('/api/me')
+    const data = await response.json()
+
+    document.querySelector('#user-name').textContent = data.user.fullname
+
+})
 async function fetchAttendanceCount() {
     try {
         const response = await fetch('/api/attendance/count')

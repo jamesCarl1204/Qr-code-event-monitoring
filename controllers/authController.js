@@ -61,8 +61,8 @@ const register_post = async (req, res) => {
 const login_post = async (req, res) => {
     const {email, password} = req.body; 
 
-
      try {
+
      const account = await studentModel.getPassword(email)
      console.log(email, password)
      console.log(account)
@@ -72,11 +72,12 @@ const login_post = async (req, res) => {
      }
      const isMatch = await bcrypt.compare(password, account.password) 
      const isMatchforAdmin = account.password === password
+
      if(!isMatch && !isMatchforAdmin) {
         return res.status(400).json({success:false, msg: 'Invalid email or password2'})
      }
 
-     req.session.user = {id: account.id, role: account.role}
+     req.session.user = {id: account.id, role: account.role, fullname: account.first_name + " " + account.middle_name + " " + account.last_name}
 
      const redirect = account.role === 'admin' ? '/admin/dashboard' : '/student/dashboard'
 
