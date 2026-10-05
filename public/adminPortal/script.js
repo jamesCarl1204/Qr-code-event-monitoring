@@ -1,15 +1,15 @@
-const addEventBtn = document.querySelector('#event-add-btn')
-const dashboardTable = document.querySelector('.dashboard-event-table')
-const eventCreateCard = document.querySelector('.event-input-container')
-const qrContainer = document.querySelector('.qr-code-container')
-const qrCode = document.querySelector('#qr-code')
+const addEventBtn = document.querySelector('#event-add-btn');
+const dashboardTable = document.querySelector('.dashboard-event-table');
+const eventCreateCard = document.querySelector('.event-input-container');
+const qrContainer = document.querySelector('.qr-code-container');
+const qrCode = document.querySelector('#qr-code');
 
-const tableContainer = document.querySelector('.attendance-container')
-const attendanceBody = document.querySelector('#attendance-body')
+const tableContainer = document.querySelector('.attendance-container');
+const attendanceBody = document.querySelector('#attendance-body');
 
 window.addEventListener('DOMContentLoaded', async () => {
-      const response = await fetch('/api/me')
-      const data = await response.json()
+      const response = await fetch('/api/me');
+      const data = await response.json();
 
       if(data.user) {
             document.querySelector('#user-name').innerHTML += data.user.id
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 
-const now = new Date()
+const now = new Date();
 const formattedDateTime = now.toLocaleString('en-US', {
       year: 'numeric',
       month: 'long',
@@ -25,39 +25,39 @@ const formattedDateTime = now.toLocaleString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
       hour12: true
-})
+});
 
 function formatDate(date) {
       return new Date(date).toLocaleDateString('en-US', {
             month: 'long',
             day: 'numeric',
             year: 'numeric'
-      })
+      });
 }
 
 function formatTime(time) {
-      const [hour, minute] = time.split(':')
+      const [hour, minute] = time.split(':');
 
-      const date = new Date()
-      date.setHours(hour, minute, 0)
+      const date = new Date();
+      date.setHours(hour, minute, 0);
 
       return date.toLocaleTimeString('en-US', {
             hour: 'numeric',
             minute: '2-digit',
             hour12: true
-      })
+      });
 }
 async function fetchEvents() {
       try{
       const response = await fetch('/api/events', {
             method:'GET',
             headers: {'Content-Type':'application/json'}
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
       
-      const dashboardBody = document.querySelector('.dashboard-event-body')
-      const sectionBody = document.querySelector('.event-section-table')
+      const dashboardBody = document.querySelector('.dashboard-event-body');
+      const sectionBody = document.querySelector('.event-section-table');
 
       data.events.forEach((event,index) => {
       dashboardBody.innerHTML += `
@@ -82,7 +82,7 @@ async function fetchEvents() {
       `
 
       document.querySelector('#total-event').textContent = data.events.length
-      })
+      });
 
       document.querySelectorAll('.view-records').forEach(button => {
             button.addEventListener('click', async () => {
@@ -102,8 +102,7 @@ async function fetchEvents() {
                    <td>${record.scanned_at}</td>
                    <tr>
                    `
-                   
-                  })
+                  });
                  tableContainer.style.display = 'flex'
             })
       })
@@ -113,30 +112,30 @@ async function fetchEvents() {
                   const eventId = button.dataset.id
 
                   const response = await fetch(`/api/events/${eventId}/qr`)
-                  const data = await response.json()
+                  const data = await response.json();
 
                   qrCode.innerHTML = `
                   <img width="200px" height="200px" src="${data.qr}" alt='event qr code'>
                   <span class="qrcode-back-btn">back</span>
                   `
-                  qrContainer.style.display = 'flex'
+                  qrContainer.style.display = 'flex';
       
                   document.querySelector('.qrcode-back-btn').addEventListener('click', () => {
-                  qrContainer.style.display = "none"
+                  qrContainer.style.display = "none";
                })
             })
       })
       
       
 } catch(err) {
-      console.log(err)
+      console.log(err);
 }
 }
 
-fetchEvents()
+fetchEvents();
 
 addEventBtn.addEventListener('click', (e) => {
-         eventCreateCard.style.display = 'flex'
+         eventCreateCard.style.display = 'flex';
 })
 
 
