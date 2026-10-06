@@ -64,5 +64,19 @@ const getRecords = async (req, res) => {
 }
 
 
+const getStudents = async (req, res) => {
+    try {
+        const totalStudent = await eventModel.getStudents()
+         if(!totalStudent) {
+            return res.status(400).json({success: false, msg: 'no student'})
+         }
+          res.status(200).json({success: true, students: totalStudent})
+        
+    } catch(err){
 
-module.exports = {createEvent_post, event_get,getEventQr, getRecords}
+    }
+
+}
+
+
+module.exports = {createEvent_post, event_get,getEventQr, getRecords,getStudents}

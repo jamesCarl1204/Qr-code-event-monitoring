@@ -132,6 +132,14 @@ async function fetchEvents() {
 }
 }
 
+async function fetchTotalStudent() {
+      const response = await fetch('/api/students')
+      const data = await response.json()
+
+      document.querySelector('#total-student').textContent = data.students.total_student
+}
+
+fetchTotalStudent()
 fetchEvents();
 
 addEventBtn.addEventListener('click', (e) => {
@@ -175,15 +183,19 @@ sidebarItem.forEach(item => {
  document.getElementById(`view-${item.dataset.target}`).style.display = "flex"
 
 })
-  
- 
 })
 
+document.querySelector('#search-input').addEventListener('input', (e) => {
+      const keyword = e.target.value.toLowerCase()
 
+      document.querySelectorAll('#section-table-body tr').forEach(row => {
+            const match = row.textContent.toLowerCase().includes(keyword)
+            row.style.display = match ? '' : 'none'
+      })
+})
 document.querySelector('#cancel-btn').addEventListener('click', () => {
       eventCreateCard.style.display = "none"
 })
-
 
 document.querySelector('#logout-btn').addEventListener('click', async () => {
      const response = await fetch('/logout', {method: 'POST'})

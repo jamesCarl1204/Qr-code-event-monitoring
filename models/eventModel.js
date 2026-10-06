@@ -55,6 +55,11 @@ const eventModel = {
 
         return rows
     },
+
+    async getStudents() {
+        const [rows] = await pool.query('SELECT COUNT(*) AS total_student FROM users WHERE role = "student" ')
+        return rows[0]
+    }
    
 }
 
