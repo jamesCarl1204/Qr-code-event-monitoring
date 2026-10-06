@@ -57,7 +57,10 @@ async function fetchEvents() {
       const data = await response.json();
       
       const dashboardBody = document.querySelector('.dashboard-event-body');
-      const sectionBody = document.querySelector('.event-section-table');
+      const sectionBody = document.querySelector('#section-table-body');
+
+      dashboardBody.innerHTML = ''
+      sectionBody.innerHTML = ''
 
       data.events.forEach((event,index) => {
       dashboardBody.innerHTML += `
@@ -75,11 +78,12 @@ async function fetchEvents() {
       
 
       sectionBody.innerHTML += `
-      <th>${event.event_name}</th>
-      <th>${formatDate(event.event_date) + ' ' + formatTime(event.event_time)}</th>
-      <th>${event.venue}</th>
-      <th><button>delete</button</th>
-      `
+      <tr>
+      <td>${event.event_name}</td>
+      <td>${formatDate(event.event_date) + ' ' + formatTime(event.event_time)}</td>
+      <td>${event.venue}</td>
+      <td><button>delete</button</td>
+      </tr>`
 
       document.querySelector('#total-event').textContent = data.events.length
       });
@@ -100,7 +104,7 @@ async function fetchEvents() {
                    <td>${record.student_id}</td>
                    <td>${record.first_name}</td>
                    <td>${record.scanned_at}</td>
-                   <tr>
+                   </tr>
                    `
                   });
                  tableContainer.style.display = 'flex'
