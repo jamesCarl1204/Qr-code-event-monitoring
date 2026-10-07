@@ -148,7 +148,7 @@ addEventBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex';
 })
 
-document.querySelector('.qrcode-back-btn').addEventListener('click', () => {
+document.querySelector('#qrcode-back-btn').addEventListener('click', () => {
                   qrContainer.style.display = "none";
                })
 
