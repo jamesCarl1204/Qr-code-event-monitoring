@@ -118,15 +118,12 @@ async function fetchEvents() {
                   const response = await fetch(`/api/events/${eventId}/qr`)
                   const data = await response.json();
 
-                  qrCode.innerHTML = `
+                  qrCode.innerHTML += `
                   <img width="200px" height="200px" src="${data.qr}" alt='event qr code'>
-                  <span class="qrcode-back-btn">back</span>
                   `
                   qrContainer.style.display = 'flex';
       
-                  document.querySelector('.qrcode-back-btn').addEventListener('click', () => {
-                  qrContainer.style.display = "none";
-               })
+                 
             })
       })
       
@@ -135,6 +132,7 @@ async function fetchEvents() {
       console.log(err);
 }
 }
+
 
 async function fetchTotalStudent() {
       const response = await fetch('/api/students')
@@ -150,6 +148,9 @@ addEventBtn.addEventListener('click', (e) => {
          eventCreateCard.style.display = 'flex';
 })
 
+document.querySelector('.qrcode-back-btn').addEventListener('click', () => {
+                  qrContainer.style.display = "none";
+               })
 
 document.querySelector('#create-sub').addEventListener('click', async (e) => {
 
